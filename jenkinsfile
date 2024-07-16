@@ -1,16 +1,26 @@
-pipeline{
-   agent any
-   
-   stages{
-      stage("compile"){
-         steps{
-           sh 'javac Pipeline-Project.java'
-         }
-      }
-      stage("run"){
-         steps{
-           sh 'java Pipeline-Project'
-         }
-      }
-   }
+pipeline {
+    agent any
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Compile') {
+            steps {
+                bat '''
+                REM Add your compile commands here
+                echo Compiling the project...
+                '''
+            }
+        }
+        stage('Run') {
+            steps {
+                bat '''
+                REM Add your run commands here
+                echo Running the project...
+                '''
+            }
+        }
+    }
 }
